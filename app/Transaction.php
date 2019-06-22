@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Transaction extends Model
 {
@@ -11,7 +12,9 @@ class Transaction extends Model
         'buyer_id',
         'product_id'
     ];
+    use SoftDeletes;
 
+    protected $dates = ['deleted_at'];
     public function buyer()
     {
         return $this->belongsTo('App\Buyer');
