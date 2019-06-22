@@ -19,6 +19,7 @@ class CreateTransacionsTable extends Migration
             $table->unsignedBigInteger('buyer_id');
             $table->unsignedBigInteger('product_id');
             $table->timestamps();
+            $table->softDeletes();//deleted_at
         });
 
         Schema::table('transactions', function (Blueprint $table) {
