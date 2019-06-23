@@ -33,7 +33,11 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                        @if (Auth::check())
+                        <li class="nav-item"><a class="nav-link" href="{{route('personal-tokens')}}">My tokens</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{route('client-tokens')}}">My clients</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{route('authorized-client-tokens')}}">Authorized clients</a></li>
+                        @endif
                     </ul>
 
                     <!-- Right Side Of Navbar -->
