@@ -25,6 +25,29 @@ class ProductTransformer extends TransformerAbstract
             'creationDate' => $product->created_at,
             'lastChangeDate' => $product->updated_at,
             'deletedDate' => isset($product->deleted_at) ? (string) $product->deleted_at : null,
+
+            'links' => [
+                [
+                    'rel' => 'self',
+                    'href' => route('products.show', $product->id),
+                ],
+                [
+                    'rel' => 'products.buyers',
+                    'href' => route('products.buyers.index', $product->id),
+                ],
+                [
+                    'rel' => 'products.categories',
+                    'href' => route('products.categories.index', $product->id),
+                ],
+                [
+                    'rel' => 'products.transactions',
+                    'href' => route('products.transactions.index', $product->id),
+                ],
+                [
+                    'rel' => 'seller',
+                    'href' => route('sellers.show', $product->seller_id),
+                ]
+            ]
         ];
     }
 
@@ -41,6 +64,24 @@ class ProductTransformer extends TransformerAbstract
             'creationDate' => 'created_at',
             'lastChangeDate' => 'updated_at',
             'deletedDate' => 'deleted_at',
+        ];
+
+        return isset($attributes[$index]) ?  $attributes[$index] : null;
+    }
+
+    public static function transformedAttribute($index)
+    {
+        $attributes =  [
+            'id' => 'identifier',
+            'name' => 'title',
+            'description' => 'details',
+            'quantity' => 'stock',
+            'status' => 'situation',
+            'image' => 'picture',
+            'seller_id' => 'seller',
+            'created_at' => 'creationDate',
+            'updated_at' => 'lastChangeDate',
+            'deleted_at' => 'deletedDate',
         ];
 
         return isset($attributes[$index]) ?  $attributes[$index] : null;
