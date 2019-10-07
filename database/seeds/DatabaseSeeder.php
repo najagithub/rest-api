@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        // ini_set('memory_limit','3048M');
         // $this->call(UsersTableSeeder::class);
         DB::statement('SET FOREIGN_KEY_CHECKS = 0');
 
@@ -29,10 +30,15 @@ class DatabaseSeeder extends Seeder
         Product::flushEventListeners();
         Transaction::flushEventListeners();
 
+        // $usersQuantity = 200;
+        // $categoriesQuantity = 30;
+        // $productsQuantity = 1000;
+        // $transactionsQuantity = 1000;
+
         $usersQuantity = 200;
         $categoriesQuantity = 30;
-        $productsQuantity = 1000;
-        $transactionsQuantity = 1000;
+        $productsQuantity = 100;
+        $transactionsQuantity = 150;
 
         factory(User::class, $usersQuantity)->create();
         factory(Category::class, $categoriesQuantity)->create();

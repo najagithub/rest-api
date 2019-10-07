@@ -46,7 +46,7 @@ $factory->define(Product::class, function (Faker $faker) {
     return [
         'name' => $faker->word,
         'description' => $faker->paragraph(1),
-        'quantity' => $faker->numberBetween(1, 10),
+        'quantity' => $faker->numberBetween(1, 300),
         'status' => $faker->randomElement([Product::UNAVAILABLE_PRODUCT, Product::AVAILABLE_PRODUCT]),
         'image' => $faker->randomElement(['1.jpg', '2.jpg', '3.jpg']),
         'seller_id' => User::all()->random()->id,
@@ -59,7 +59,7 @@ $factory->define(Transaction::class, function (Faker $faker) {
     $buyer = User::all()->except($seller->id)->random();
 
     return [
-        'quantity' => $faker->numberBetween(1, 3),
+        'quantity' => $faker->numberBetween(1, 5),
         'buyer_id' => $buyer->id,
         'product_id' => $seller->products->random()->id,
     ];

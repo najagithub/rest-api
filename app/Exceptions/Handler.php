@@ -125,7 +125,7 @@ class Handler extends ExceptionHandler
         $errors = $e->validator->errors()->getMessages();
 
         if ($this->isFrontEnd($request)) {
-            return $request->ajax() ? response()->json($error, 422)
+            return $request->ajax() ? response()->json($errors, 422)
             : redirect()->back()->withInput($request->input())->withErrors($errors);
         }
 

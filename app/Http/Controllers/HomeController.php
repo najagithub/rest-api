@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\User;
 class HomeController extends Controller
 {
     /**
@@ -14,6 +14,13 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+    }
+
+    public function testJson()
+    {
+        $users = User::all();
+
+        return response()->json($users);
     }
 
     /**

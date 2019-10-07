@@ -28,6 +28,9 @@ Route::get('/home/authorized-clients', 'HomeController@getAuthorizedClients')->n
 Route::get('/home/my-clients', 'HomeController@getClients')->name('client-tokens');
 Route::get('/home/my-tokens', 'HomeController@getTokens')->name('personal-tokens');
 Route::get('/home', 'HomeController@index');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/home/test_json', 'HomeController@testJson');
+});
 
 Route::get('/', function () {
     return view('welcome');
